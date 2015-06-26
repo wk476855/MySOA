@@ -24,7 +24,7 @@ public class BaiduPOI {
 	public static List<Theater> getPOI(double lat, double lng) {
 		String location = lat + "," + lng;
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(BAIDU_MAP_POI).path("place").path("search").queryParam("query", KEY_WORD).queryParam("location", "31.023722,121.437416")
+		WebTarget target = client.target(BAIDU_MAP_POI).path("place").path("search").queryParam("query", KEY_WORD).queryParam("location", lng+","+lat)
 				.queryParam("radius", RADIUS).queryParam("output", "json");
 		Response response = target.request(MediaType.APPLICATION_JSON).get();
 		String result = response.readEntity(String.class);

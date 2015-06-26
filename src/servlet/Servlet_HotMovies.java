@@ -1,5 +1,6 @@
 package servlet;
 
+
 import com.demo.internet.HotMovieCrawler;
 import com.demo.resource.HotMovie;
 import com.demo.resource.MovieInfo;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -24,6 +24,7 @@ public class Servlet_HotMovies extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HotMovieCrawler hotMovieCrawler = new HotMovieCrawler();
         HotMovie hotMovie = hotMovieCrawler.getHotMovieByCity("shanghai");
         List<MovieInfo> movieInfos = hotMovie.getMovies();
