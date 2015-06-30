@@ -20,6 +20,10 @@
         <servlet-name>Theaters</servlet-name>
         <servlet-class>servlet.Servlet_Theaters</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TheatersDetails</servlet-name>
+        <servlet-class>servlet.Servlet_TheaterDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/webapi/*</url-pattern>
@@ -27,6 +31,10 @@
     <servlet-mapping>
         <servlet-name>HotMovies</servlet-name>
         <url-pattern>/servlet/HotMovies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TheatersDetails</servlet-name>
+        <url-pattern>/servlet/TheatersDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Theaters</servlet-name>

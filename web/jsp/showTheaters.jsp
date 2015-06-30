@@ -87,6 +87,11 @@
           <%--<p> PIC：<%=tlist.get(i).getImage()%><p/>--%>
           <p>地址：<%=tlist.get(i).getAddress()%></p>
           <p>电话：<%=tlist.get(i).getTelephone()%></p>
+
+            <%--<form action = "/servlet/TheatersDetails">--%>
+              <p><a class="btn btn-default" href="/servlet/TheatersDetails?uid=<%=tlist.get(i).getUid()%>" role="button">View details &raquo;</a></p>
+            <%--<input type="hidden" name="uid" value=<%=tlist.get(i).getUid()%> />--%>
+            <%--</form>--%>
           </div>
           <%
 

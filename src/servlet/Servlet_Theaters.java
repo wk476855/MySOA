@@ -28,8 +28,8 @@ public class Servlet_Theaters extends HttpServlet {
 
         String IP;
         //Show IP
-        //IP=request.getRemoteAddr();
-        IP="202.108.22.5";//Baidu IP in Beijing      IP in SJTU is 202.120.38.22
+        IP=request.getRemoteAddr();
+       // IP="202.108.22.5";//Baidu IP in Beijing      IP in SJTU is 202.120.38.22
         System.out.println(IP);
         //Seek IP
         IPSeeker iPSeeker =IPSeeker.getInstance();
@@ -40,18 +40,15 @@ public class Servlet_Theaters extends HttpServlet {
         Object[] o = baiduGeo.getCoordinate(realPosition);
         double lat=Double.valueOf(o[0].toString());
         double lng=Double.valueOf(o[1].toString());
-        System.out.println(o[0]);//����
-        System.out.println(o[1]);//γ��
+        //经纬度
+        System.out.println(o[0]);
+        System.out.println(o[1]);
         //
         List<Theater> tlist;
-//        if(lat > 180 || lng > 180) {
-//            return Response.serverError().entity("lat and lng is not correct!").build();
-//        }
+
         tlist = BaiduPOI.getPOI(lat, lng);
         System.out.println(tlist.size());
-       // GenericEntity<List<Theater>> entity = new GenericEntity<List<Theater>>(tlist) {};
 
-        //
         request.setAttribute("Geo", realPosition);
         request.setAttribute("Theaters", tlist);
         request.getRequestDispatcher("../jsp/showTheaters.jsp").forward(request, response);
