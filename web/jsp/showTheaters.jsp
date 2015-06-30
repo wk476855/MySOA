@@ -8,7 +8,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% List<Theater> tlist=(List<Theater>)request.getAttribute("Theaters");%>
+<%
+    List<Theater> tlist=(List<Theater>)request.getAttribute("Theaters");
+    String movname = (String)request.getAttribute("movname");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../image/SOA.ico">
 
-  <title>Off Canvas Template for Bootstrap</title>
+  <title>热映电影及周边影院信息系统</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../CSS/bootstrap.min.css" rel="stylesheet">
@@ -53,9 +56,8 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+          <li><a href="/servlet/HotMovies">主页</a></li>
+        <li class="active"><a href="#about">附近影院</a></li>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
@@ -65,13 +67,13 @@
 
   <div class="row row-offcanvas row-offcanvas-right">
 
-    <div class="col-xs-12 col-sm-9">
+    <div class="col-xs-12 col-sm-12">
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
       <div class="jumbotron">
-        <h1>Nearby Theaters</h1>
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        <h1>附近影院</h1>
+        <p>查看附近影院，选择适当的影院看喜欢的电影！</p>
       </div>
       <div class="row">
         <%--<div class="col-xs-6 col-lg-4">--%>
@@ -80,45 +82,37 @@
         <%--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>--%>
         <%--</div><!--/.col-xs-6.col-lg-4-->--%>
           <%for(int i=0;i<tlist.size();i++){
-
+            if(i%4==0) {
+                %>
+                    <div class="row">
+                <%
+            }
           %>
-          <div class="col-xs-6 col-lg-4">
+          <div class="col-xs-3 col-lg-3">
           <h2><%=tlist.get(i).getName()%></h2>
           <%--<p> PIC：<%=tlist.get(i).getImage()%><p/>--%>
           <p>地址：<%=tlist.get(i).getAddress()%></p>
-          <p>电话：<%=tlist.get(i).getTelephone()%></p>
+          <p>电话：<%=(tlist.get(i).getTelephone()==null?"无":tlist.get(i).getTelephone())%></p>
 
             <%--<form action = "/servlet/TheatersDetails">--%>
-              <p><a class="btn btn-default" href="/servlet/TheatersDetails?uid=<%=tlist.get(i).getUid()%>" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-default" href="/servlet/TheatersDetails?movname=<%=movname%>&uid=<%=tlist.get(i).getUid()%>" role="button">详细信息 &raquo;</a></p>
             <%--<input type="hidden" name="uid" value=<%=tlist.get(i).getUid()%> />--%>
             <%--</form>--%>
           </div>
           <%
-
+            if(i%4==3) {
+                %></div>
+                        <%
+            }
           }%>
       </div><!--/row-->
     </div><!--/.col-xs-12.col-sm-9-->
-
-    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-      <div class="list-group">
-        <a href="#" class="list-group-item active">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-      </div>
-    </div><!--/.sidebar-offcanvas-->
   </div><!--/row-->
 
   <hr>
 
   <footer>
-    <p>&copy; Company 2014</p>
+    <p>&copy; Company 2015</p>
   </footer>
 
 </div><!--/.container-->
