@@ -25,6 +25,7 @@ public class Servlet_HotMovies extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         HotMovieCrawler hotMovieCrawler = new HotMovieCrawler();
         HotMovie hotMovie = hotMovieCrawler.getHotMovieByCity("shanghai");
         List<MovieInfo> movieInfos = hotMovie.getMovies();

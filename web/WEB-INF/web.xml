@@ -24,6 +24,10 @@
         <servlet-name>TheatersDetails</servlet-name>
         <servlet-class>servlet.Servlet_TheaterDetails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetIP</servlet-name>
+        <servlet-class>servlet.Servlet_GetIP</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/webapi/*</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Theaters</servlet-name>
         <url-pattern>/servlet/Theaters</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetIP</servlet-name>
+        <url-pattern>/servlet/GetIP</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
