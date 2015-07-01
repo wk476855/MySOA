@@ -24,7 +24,13 @@ public class TheaterResource {
 			return Response.serverError().entity("lat and lng is not correct!").build();
 		}
 		tlist = BaiduPOI.getPOI(lat, lng);
-		System.out.println(tlist.size());
+//		if(tlist != null) {
+//			for(int i=0; i<tlist.size(); i++){
+//				Theater theater = tlist.get(i);
+//				theater = POIDetails.getTheaterDetails(theater.getUid());
+//				tlist.set(i, theater);
+//			}
+//		}
 		GenericEntity<List<Theater>> entity = new GenericEntity<List<Theater>>(tlist) {};
 		Response response = Response.ok(entity).build();
 		return response;

@@ -9,6 +9,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<MovieInfo> movieInfos=(List<MovieInfo>)request.getAttribute("movies");%>
+<% String lat=(String)request.getAttribute("lat");%>
+<% String lng=(String)request.getAttribute("lng");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../image/SOA.ico">
 
-  <title>Off Canvas Template for Bootstrap</title>
+  <title>热映电影及周边影院信息系统</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../CSS/bootstrap.min.css" rel="stylesheet">
@@ -53,9 +55,8 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li class="active"><a href="#">首页</a></li>
+        <li><a href="#about">附近影院</a></li>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
@@ -70,8 +71,8 @@
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
       <div class="jumbotron">
-        <h1>Hot Movies</h1>
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        <h1>热映电影</h1>
+        <p>这里有最新的热映电影信息，赶紧来看看吧！！</p>
       </div>
       <%--<div class="row">--%>
         <%--<div class="col-xs-6 col-lg-4">--%>
@@ -84,17 +85,16 @@
           {
             %><div class="row"><%
           }
-          %><div class="col-xs-6 col-lg-4">
+          %><div class="col-xs-4 col-lg-4">
         <h2><%=movieInfos.get(i).getName()%></h2>
-        <img src="<%=movieInfos.get(i).getPicture()%>"/>
+          <a href="/servlet/Theaters?movname=<%=movieInfos.get(i).getName()%>&lat=<%=lat%>&lng=<%=lng%>"><img src="<%=movieInfos.get(i).getPicture()%>"/></a>
           <p>导演：<%=movieInfos.get(i).getDirector()%></p>
           <p>演员：<%=movieInfos.get(i).getActor()%></p>
           <p>简介：<%=movieInfos.get(i).getBrief()%></p>
           <p>上映时间：<%=movieInfos.get(i).getRelease_date()%></p>
           <p>评分：<%=movieInfos.get(i).getScore()%></p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
       </div><%
-          if(i%3==0)
+          if(i%3==2)
           {
         %></div><%
             }
@@ -105,7 +105,7 @@
   <hr>
 
   <footer>
-    <p>&copy; Company 2014</p>
+    <p>&copy; Company 2015</p>
   </footer>
 
 </div><!--/.container-->

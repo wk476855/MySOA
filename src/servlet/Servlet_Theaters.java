@@ -3,6 +3,8 @@ package servlet;
 import com.demo.IPtoGeo.BaiduGeo;
 import com.demo.IPtoGeo.IPSeeker;
 import com.demo.internet.BaiduPOI;
+import com.demo.internet.POIDetails;
+import com.demo.resource.MovieInfo;
 import com.demo.resource.Theater;
 
 import javax.servlet.ServletException;
@@ -50,14 +52,36 @@ public class Servlet_Theaters extends HttpServlet {
         String lat=request.getParameter("lat");
         System.out.println(lat);
         System.out.println(lng);
+        request.setAttribute("lng", lng);
+        request.setAttribute("lat",lat);
 
         double Dlng=Double.valueOf(lng);
         double Dlat=Double.valueOf(lat);
         List<Theater> tlist;
 
         tlist = BaiduPOI.getPOI(Dlng,Dlat);
+//        if(tlist != null) {
+//            for(int i=0; i<tlist.size(); i++){
+//                Theater theater = tlist.get(i);
+//                theater = POIDetails.getTheaterDetails(theater.getUid());
+//                if(theater.getMovieInfos() != null) {
+//                    List<MovieInfo> movieInfos = theater.getMovieInfos();
+//                    boolean flag = false;
+//                    if(movieInfos != null) {
+//                        for (int j = 0; j < movieInfos.size(); j++) {
+//                            if(request.getParameter("movname") == null || movieInfos.get(j).getName().equals(request.getParameter("movname"))){
+//                                flag = true;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if(flag)         tlist.set(i, theater);
+//                    else  tlist.remove(i);
+//                }
+//            }
+//        }
         System.out.println(tlist.size());
-
+        request.setAttribute("movname", request.getParameter("movname"));
         request.setAttribute("Theaters", tlist);
         request.getRequestDispatcher("../jsp/showTheaters.jsp").forward(request, response);
 

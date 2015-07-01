@@ -41,6 +41,6 @@
       var poi = rs.getPoi(0);
     }
 //    alert(poi.point.lat+","+poi.point.lng);
-    window.location.href="/servlet/Theaters?lat="+poi.point.lat+"&lng="+poi.point.lng;
+    window.location.href="/servlet/HotMovies?lat="+poi.point.lat+"&lng="+poi.point.lng;
   });
 </script>

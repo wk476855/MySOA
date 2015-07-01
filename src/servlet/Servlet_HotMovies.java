@@ -25,7 +25,15 @@ public class Servlet_HotMovies extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String lng=request.getParameter("lng");
+        String lat=request.getParameter("lat");
+        System.out.println(lat);
+        System.out.println(lng);
+        request.setAttribute("lng", lng);
+        request.setAttribute("lat",lat);
 
+        double Dlng=Double.valueOf(lng);
+        double Dlat=Double.valueOf(lat);
         HotMovieCrawler hotMovieCrawler = new HotMovieCrawler();
         HotMovie hotMovie = hotMovieCrawler.getHotMovieByCity("shanghai");
         List<MovieInfo> movieInfos = hotMovie.getMovies();

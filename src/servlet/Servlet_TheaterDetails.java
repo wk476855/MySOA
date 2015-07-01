@@ -21,10 +21,10 @@ public class Servlet_TheaterDetails extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uid = request.getParameter("uid");
-        Theater theater = POIDetails.getTheaterDetails(uid);
+		Theater theater = POIDetails.getTheaterDetails(uid);
         request.setAttribute("theater",theater);
+		request.setAttribute("movname", request.getParameter("movname"));
         request.getRequestDispatcher("../jsp/showTheaterDetails.jsp").forward(request, response);
-
         System.out.println(uid);
 
     }
